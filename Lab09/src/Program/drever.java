@@ -1,6 +1,7 @@
 package Program;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,13 +23,13 @@ public class drever extends Application {
 		launch(args);
 	}
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) throws FileNotFoundException {
 		myStage = stage;
-		File mapOne = new File("src/Program/game1.txt");
-		File mapTwo = new File("src/Program/game2.txt");
+		File mapOne = new File("src\\game1.txt");
+		File mapTwo = new File("src\\game2.txt");
 		
 		Random rand = new Random();
-		Scanner scan;
+		Scanner scan = null;
 		
 		if(rand.nextInt() % 2 == 0) {
 			scan = new Scanner(mapOne);
@@ -36,6 +37,28 @@ public class drever extends Application {
 		else {
 			scan = new Scanner(mapTwo);
 		}
+		/*Scanner scanlin = null;
+		int i = 0;
+		String[][] tiles = new String[10][5];
+		for(int x = 0; x < 10; x = x + 1) {
+			String lins = scan.nextLine();
+			if(i == 0) {
+				scanlin = new Scanner(lins);
+				i = i + 1;
+			}
+			for(int y = 0; y < 5; y = y + 1) {
+				String current_int = scanlin.nextLine();
+				if(current_int.equals("0")) {
+					tiles[x][y] = "board board_" + x + "_" + y + "= new board(" + x + ", " + y + ", " + false + ")";
+					System.out.println(tiles[x][y]);
+				}
+				else if(current_int.equals("1")){
+					tiles[x][y] = "board board_" + x + "_" + y + "= new board(" + x + ", " + y + ", " + true + ")";
+					System.out.println(tiles[x][y]);
+				}
+			}
+		}
+*/
 		scan.close();
 		Image img = new Image("file:src/Player1.jpg");
 		player = new Player(10,10,5,5, img);
